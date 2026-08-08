@@ -10,6 +10,8 @@
     <header>
         <h1>لوحة متابعة المشرفين</h1>
         <div class="nav-links">
+            <!-- رابط للعودة لصفحة المدير لو كان هو اللي داخل -->
+            <a href="admin.html" class="admin-only-link" style="display: none;">العودة للوحة المدير</a>
             <a href="#" id="logoutBtn">تسجيل الخروج</a>
         </div>
     </header>
@@ -25,30 +27,30 @@
                 <div>
                     <label for="filterReason" style="font-size: 0.85rem; margin-bottom: 3px;">سبب العطل:</label>
                    <select id="filterReason">
-    <option value="">كل أسباب الأعطال</option>
-    <option value="صيانة ماكينة">صيانة ماكينة</option>
-    <option value="الصيانة الوقائية">الصيانة الوقائية</option>
-    <option value="ضبط الماكينة">ضبط الماكينة</option>
-    <option value="بداية تشغيل">بداية تشغيل</option>
-    <option value="صيانة تصنيع اسطمبة">صيانة تصنيع اسطمبة</option>
-    <option value="تغيير اسطمبة">تغيير اسطمبة</option>
-    <option value="عطل في غلاية مزيل الشحوم">عطل في غلاية مزيل الشحوم</option>
-    <option value="غياب أو عدم وجود عمالة">غياب أو عدم وجود عمالة</option>
-    <option value="تدريب عمالة جديدة">تدريب عمالة جديدة</option>
-    <option value="عدم توافر خامة">عدم توافر خامة</option>
-    <option value="توقف نتيجة بحث أو تجميع أو استعمال أجزاء المنتجات">توقف نتيجة بحث أو تجميع أو استعمال أجزاء المنتجات</option>
-    <option value="عدم وجود أمر شغل">عدم وجود أمر شغل</option>
-    <option value="تغيير الخامات من أمر شغل إلى آخر">تغيير الخامات من أمر شغل إلى آخر</option>
-    <option value="توقف للجودة أو إصلاح">توقف للجودة أو إصلاح</option>
-    <option value="انتظار كلارك">انتظار كلارك</option>
-    <option value="انتظار ونش">انتظار ونش</option>
-    <option value="انتظار من القسم السابق">انتظار من القسم السابق</option>
-    <option value="نقص في الكربون">نقص في الكربون</option>
-    <option value="توقف للأمن والسلامة">توقف للأمن والسلامة</option>
-    <option value="توقف لمشاكل بالتصميم في المنتج">توقف لمشاكل بالتصميم في المنتج</option>
-    <option value="انقطاع كهرباء">انقطاع كهرباء</option>
-    <option value="تنظيم مكان العمل">تنظيم مكان العمل</option>
-</select>
+                        <option value="">كل أسباب الأعطال</option>
+                        <option value="صيانة ماكينة">صيانة ماكينة</option>
+                        <option value="الصيانة الوقائية">الصيانة الوقائية</option>
+                        <option value="ضبط الماكينة">ضبط الماكينة</option>
+                        <option value="بداية تشغيل">بداية تشغيل</option>
+                        <option value="صيانة تصنيع اسطمبة">صيانة تصنيع اسطمبة</option>
+                        <option value="تغيير اسطمبة">تغيير اسطمبة</option>
+                        <option value="عطل في غلاية مزيل الشحوم">عطل في غلاية مزيل الشحوم</option>
+                        <option value="غياب أو عدم وجود عمالة">غياب أو عدم وجود عمالة</option>
+                        <option value="تدريب عمالة جديدة">تدريب عمالة جديدة</option>
+                        <option value="عدم توافر خامة">عدم توافر خامة</option>
+                        <option value="توقف نتيجة بحث أو تجميع أو استعمال أجزاء المنتجات">توقف نتيجة بحث أو تجميع أو استعمال أجزاء المنتجات</option>
+                        <option value="عدم وجود أمر شغل">عدم وجود أمر شغل</option>
+                        <option value="تغيير الخامات من أمر شغل إلى آخر">تغيير الخامات من أمر شغل إلى آخر</option>
+                        <option value="توقف للجودة أو إصلاح">توقف للجودة أو إصلاح</option>
+                        <option value="انتظار كلارك">انتظار كلارك</option>
+                        <option value="انتظار ونش">انتظار ونش</option>
+                        <option value="انتظار من القسم السابق">انتظار من القسم السابق</option>
+                        <option value="نقص في الكربون">نقص في الكربون</option>
+                        <option value="توقف للأمن والسلامة">توقف للأمن والسلامة</option>
+                        <option value="توقف لمشاكل بالتصميم في المنتج">توقف لمشاكل بالتصميم في المنتج</option>
+                        <option value="انقطاع كهرباء">انقطاع كهرباء</option>
+                        <option value="تنظيم مكان العمل">تنظيم مكان العمل</option>
+                    </select>
                 </div>
                 <div>
                     <label for="filterDepartment" style="font-size: 0.85rem; margin-bottom: 3px;">القسم / المنطقة:</label>
