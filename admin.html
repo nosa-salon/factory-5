@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الإدارة - الرؤية</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>لوحة تحكم الإدارة (الرؤية)</h1>
+        <div class="nav-links">
+            <a href="supervisor.html">متابعة المشرفين</a>
+            <a href="#" id="logoutBtn">تسجيل الخروج</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- قسم الفلترة والتحكم بالوقت -->
+        <div class="card">
+            <h2>تقارير وفترة الحسابات</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; align-items: flex-end;">
+                <div>
+                    <label for="adminDepartment" style="font-size: 0.85rem; margin-bottom: 3px;">المنطقة:</label>
+                    <select id="adminDepartment">
+                        <option value="">كل المناطق (مصنع 5)</option>
+                        <option value="مصنع 5 منطقة 1">مصنع 5 منطقة 1</option>
+                        <option value="مصنع 5 منطقة 2">مصنع 5 منطقة 2</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="adminStartDate" style="font-size: 0.85rem; margin-bottom: 3px;">من تاريخ:</label>
+                    <input type="date" id="adminStartDate">
+                </div>
+                <div>
+                    <label for="adminEndDate" style="font-size: 0.85rem; margin-bottom: 3px;">إلى تاريخ:</label>
+                    <input type="date" id="adminEndDate">
+                </div>
+            </div>
+        </div>
+
+        <!-- ملخص الإحصائيات العامة -->
+        <div class="card">
+            <h2>الملخص العام للأعطال والنسب (%)</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; text-align: center;">
+                    <h3>إجمالي وقت الأعطال</h3>
+                    <p id="totalDuration" style="font-size: 1.5rem; font-weight: bold; color: #0d47a1;">0 دقيقة</p>
+                </div>
+                <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; text-align: center;">
+                    <h3>عدد مرات الأعطال</h3>
+                    <p id="totalCount" style="font-size: 1.5rem; font-weight: bold; color: #1b5e20;">0 عطل</p>
+                </div>
+            </div>
+
+            <!-- جدول نسب الأعطال -->
+            <h3>تحليل أسباب الأعطال والنسب المئوية</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>سبب العطل</th>
+                            <th>عدد التكرار</th>
+                            <th>إجمالي المدة (دقائق)</th>
+                            <th>النسبة المئوية (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="statsTableBody">
+                        <tr><td colspan="4" style="text-align: center;">جاري حساب البيانات...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متابعة الأعطال - المشرفين</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>لوحة متابعة المشرفين</h1>
+        <div class="nav-links">
+            <a href="#" id="logoutBtn">تسجيل الخروج</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>فلترة وبحث الأعطال</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; align-items: flex-end;">
+                <div>
+                    <label for="searchMachine" style="font-size: 0.85rem; margin-bottom: 3px;">رقم الماكينة:</label>
+                    <input type="text" id="searchMachine" placeholder="بحث برقم الماكينة...">
+                </div>
+                <div>
+                    <label for="filterReason" style="font-size: 0.85rem; margin-bottom: 3px;">سبب العطل:</label>
+                   <select id="filterReason">
+    <option value="">كل أسباب الأعطال</option>
+    <option value="صيانة ماكينة">صيانة ماكينة</option>
+    <option value="الصيانة الوقائية">الصيانة الوقائية</option>
+    <option value="ضبط الماكينة">ضبط الماكينة</option>
+    <option value="بداية تشغيل">بداية تشغيل</option>
+    <option value="صيانة تصنيع اسطمبة">صيانة تصنيع اسطمبة</option>
+    <option value="تغيير اسطمبة">تغيير اسطمبة</option>
+    <option value="عطل في غلاية مزيل الشحوم">عطل في غلاية مزيل الشحوم</option>
+    <option value="غياب أو عدم وجود عمالة">غياب أو عدم وجود عمالة</option>
+    <option value="تدريب عمالة جديدة">تدريب عمالة جديدة</option>
+    <option value="عدم توافر خامة">عدم توافر خامة</option>
+    <option value="توقف نتيجة بحث أو تجميع أو استعمال أجزاء المنتجات">توقف نتيجة بحث أو تجميع أو استعمال أجزاء المنتجات</option>
+    <option value="عدم وجود أمر شغل">عدم وجود أمر شغل</option>
+    <option value="تغيير الخامات من أمر شغل إلى آخر">تغيير الخامات من أمر شغل إلى آخر</option>
+    <option value="توقف للجودة أو إصلاح">توقف للجودة أو إصلاح</option>
+    <option value="انتظار كلارك">انتظار كلارك</option>
+    <option value="انتظار ونش">انتظار ونش</option>
+    <option value="انتظار من القسم السابق">انتظار من القسم السابق</option>
+    <option value="نقص في الكربون">نقص في الكربون</option>
+    <option value="توقف للأمن والسلامة">توقف للأمن والسلامة</option>
+    <option value="توقف لمشاكل بالتصميم في المنتج">توقف لمشاكل بالتصميم في المنتج</option>
+    <option value="انقطاع كهرباء">انقطاع كهرباء</option>
+    <option value="تنظيم مكان العمل">تنظيم مكان العمل</option>
+</select>
+                </div>
+                <div>
+                    <label for="filterDepartment" style="font-size: 0.85rem; margin-bottom: 3px;">القسم / المنطقة:</label>
+                    <select id="filterDepartment">
+                        <option value="">كل المناطق</option>
+                        <option value="مصنع 5 منطقة 1">مصنع 5 منطقة 1</option>
+                        <option value="مصنع 5 منطقة 2">مصنع 5 منطقة 2</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="startDateFilter" style="font-size: 0.85rem; margin-bottom: 3px;">من تاريخ:</label>
+                    <input type="date" id="startDateFilter">
+                </div>
+                <div>
+                    <label for="endDateFilter" style="font-size: 0.85rem; margin-bottom: 3px;">إلى تاريخ:</label>
+                    <input type="date" id="endDateFilter">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>سجل الأعطال الحية (التحديث الفوري)</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>رقم الماكينة</th>
+                            <th>القسم / المنطقة</th>
+                            <th>الوردية</th>
+                            <th>سبب العطل</th>
+                            <th>البداية</th>
+                            <th>النهاية</th>
+                            <th>المدة (دقائق)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="breakdownsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="supervisor.js"></script>
+</body>
+</html>

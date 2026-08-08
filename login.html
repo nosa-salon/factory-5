@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f6f9; }
+        .login-card { width: 100%; max-width: 400px; }
+    </style>
+</head>
+<body>
+    <div class="card login-card">
+        <h2>تسجيل الدخول</h2>
+        <div id="alertBox" class="alert"></div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">اختر اسم المستخدم:</label>
+                <select id="username" required>
+                    <option value="" disabled selected>-- اضغط للاختيار --</option>
+                    <option value="مصنع 5">مصنع 5 (المشرفين)</option>
+                    <option value="الرؤية">الرؤية (الإدارة)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">كلمة المرور:</label>
+                <input type="password" id="password" required placeholder="أدخل كلمة المرور">
+            </div>
+            <button type="submit" style="width: 100%;">دخول</button>
+        </form>
+        <div style="margin-top: 15px; text-align: center;">
+            <a href="index.html" style="color: var(--secondary); text-decoration: none;">العودة لصفحة العمال</a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, signInWithEmailAndPassword } from "./firebase-config.js";
+        const form = document.getElementById('loginForm');
+        const alertBox = document.getElementById('alertBox');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            let email = "";
+            if (username === "مصنع 5") {
+                email = "supervisor@factory.com"; 
+            } else if (username === "الرؤية") {
+                email = "admin@factory.com"; 
+            } else {
+                alertBox.textContent = 'خطأ: برجاء اختيار اسم المستخدم!';
+                alertBox.className = 'alert alert-danger';
+                alertBox.style.display = 'block';
+                return;
+            }
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                
+                if (username === "الرؤية") {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'supervisor.html';
+                }
+            } catch (error) {
+                alertBox.textContent = 'خطأ في كلمة المرور أو بيانات الدخول!';
+                alertBox.className = 'alert alert-danger';
+                alertBox.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

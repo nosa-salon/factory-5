@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل أعطال الماكينات - العمال</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>تسجيل أعطال الماكينات</h1>
+        <div class="nav-links">
+            <a href="login.html">دخول المشرفين / الإدارة</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>تسجيل عطل جديد</h2>
+            <div id="alertBox" class="alert"></div>
+            <form id="breakdownForm">
+                <div class="form-group">
+                    <label for="machineNo">رقم الماكينة:</label>
+                    <input type="text" id="machineNo" required placeholder="مثال: M-01">
+                </div>
+
+                <!-- نوع عملية التشغيل -->
+                <div class="form-group">
+                    <label for="operationType">نوع عملية التشغيل:</label>
+                    <select id="operationType" required>
+                        <option value="" disabled selected>-- اختر نوع عملية التشغيل --</option>
+                        <option value="لحام اتوماتيك">لحام اتوماتيك</option>
+                        <option value="لحام يدوي">لحام يدوي</option>
+                        <option value="متقاب">متقاب</option>
+                        <option value="مكبس">مكبس</option>
+                        <option value="منشار">منشار</option>
+                        <option value="منشار RSA">منشار RSA</option>
+                        <option value="فرز">فرز</option>
+                        <option value="تشكيل">تشكيل</option>
+                        <option value="تدكيك">تدكيك</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="department">القسم / المنطقة:</label>
+                    <select id="department" required>
+                        <option value="مصنع 5 منطقة 1">مصنع 5 منطقة 1</option>
+                        <option value="مصنع 5 منطقة 2">مصنع 5 منطقة 2</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="shift">الوردية:</label>
+                    <select id="shift" required>
+                        <option value="الوردية الأولى (صباحي)">الوردية الأولى (صباحي)</option>
+                        <option value="الوردية الثانية (مسائي)">الوردية الثانية (مسائي)</option>
+                        <option value="الوردية الثالثة (ليلي)">الوردية الثالثة (ليلي)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reason">سبب العطل:</label>
+                    <select id="reason" required>
+                        <option value="صيانة ماكينة">صيانة ماكينة</option>
+                        <option value="الصيانة الوقائية">الصيانة الوقائية</option>
+                        <option value="ضبط الماكينة">ضبط الماكينة</option>
+                        <option value="بداية تشغيل">بداية تشغيل</option>
+                        <option value="صيانة تصنيع اسطمبة">صيانة تصنيع اسطمبة</option>
+                        <option value="تغيير اسطمبة">تغيير اسطمبة</option>
+                        <option value="عطل في غلاية مزيل الشحوم">عطل في غلاية مزيل الشحوم</option>
+                        <option value="غياب أو عدم وجود عمالة">غياب أو عدم وجود عمالة</option>
+                        <option value="تدريب عمالة جديدة">تدريب عمالة جديدة</option>
+                        <option value="عدم توافر خامة">عدم توافر خامة</option>
+                        <option value="توقف نتيجة بحث أو تجميع أو استعمال أجزاء المنتجات">توقف نتيجة بحث أو تجميع أو استعمال أجزاء المنتجات</option>
+                        <option value="عدم وجود أمر شغل">عدم وجود أمر شغل</option>
+                        <option value="تغيير الخامات من أمر شغل إلى آخر">تغيير الخامات من أمر شغل إلى آخر</option>
+                        <option value="توقف للجودة أو إصلاح">توقف للجودة أو إصلاح</option>
+                        <option value="انتظار كلارك">انتظار كلارك</option>
+                        <option value="انتظار ونش">انتظار ونش</option>
+                        <option value="انتظار من القسم السابق">انتظار من القسم السابق</option>
+                        <option value="نقص في الكربون">نقص في الكربون</option>
+                        <option value="توقف للأمن والسلامة">توقف للأمن والسلامة</option>
+                        <option value="توقف لمشاكل بالتصميم في المنتج">توقف لمشاكل بالتصميم في المنتج</option>
+                        <option value="انقطاع كهرباء">انقطاع كهرباء</option>
+                        <option value="تنظيم مكان العمل">تنظيم مكان العمل</option>
+                    </select>
+                </div>
+
+                <!-- وقت بداية العطل -->
+                <div class="form-group">
+                    <label>وقت بداية العطل:</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="date" id="startDateInput" required style="flex: 2; cursor: pointer;">
+                        <select id="startHour" required style="flex: 1; cursor: pointer;">
+                            <option value="" disabled selected>الساعة</option>
+                            <script>
+                                for(let i=1; i<=12; i++) {
+                                    document.write(`<option value="${i}">${i < 10 ? '0'+i : i}</option>`);
+                                }
+                            </script>
+                        </select>
+                        <select id="startMinute" required style="flex: 1; cursor: pointer;">
+                            <option value="" disabled selected>الدقيقة</option>
+                            <script>
+                                for(let i=0; i<60; i+=5) {
+                                    let m = i < 10 ? '0'+i : i;
+                                    document.write(`<option value="${m}">${m}</option>`);
+                                }
+                            </script>
+                        </select>
+                        <select id="startAmPm" required style="flex: 1; font-weight: bold; cursor: pointer;">
+                            <option value="AM">صباحاً</option>
+                            <option value="PM">مساءً</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- وقت نهاية العطل -->
+                <div class="form-group">
+                    <label>وقت نهاية العطل:</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="date" id="endDateInput" required style="flex: 2; cursor: pointer;">
+                        <select id="endHour" required style="flex: 1; cursor: pointer;">
+                            <option value="" disabled selected>الساعة</option>
+                            <script>
+                                for(let i=1; i<=12; i++) {
+                                    document.write(`<option value="${i}">${i < 10 ? '0'+i : i}</option>`);
+                                }
+                            </script>
+                        </select>
+                        <select id="endMinute" required style="flex: 1; cursor: pointer;">
+                            <option value="" disabled selected>الدقيقة</option>
+                            <script>
+                                for(let i=0; i<60; i+=5) {
+                                    let m = i < 10 ? '0'+i : i;
+                                    document.write(`<option value="${m}">${m}</option>`);
+                                }
+                            </script>
+                        </select>
+                        <select id="endAmPm" required style="flex: 1; font-weight: bold; cursor: pointer;">
+                            <option value="AM">صباحاً</option>
+                            <option value="PM">مساءً</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-success" style="width: 100%; margin-top: 10px;">تسجيل العطل</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { db, collection, addDoc, getDocs, query, where, Timestamp } from "./firebase-config.js";
+
+        const form = document.getElementById('breakdownForm');
+        const alertBox = document.getElementById('alertBox');
+
+        const now = new Date();
+        const todayStr = now.toISOString().split('T')[0];
+        document.getElementById('startDateInput').value = todayStr;
+        document.getElementById('endDateInput').value = todayStr;
+
+        let currentHour24 = now.getHours();
+        let currentMinute = now.getMinutes();
+        let ampm = currentHour24 >= 12 ? 'PM' : 'AM';
+        let hour12 = currentHour24 % 12 || 12;
+        let roundedMinute = Math.round(currentMinute / 5) * 5;
+        if (roundedMinute === 60) { roundedMinute = 0; hour12 = (hour12 % 12) + 1; }
+        let minuteStr = roundedMinute < 10 ? '0' + roundedMinute : '' + roundedMinute;
+
+        document.getElementById('startHour').value = hour12;
+        document.getElementById('startMinute').value = minuteStr;
+        document.getElementById('startAmPm').value = ampm;
+
+        document.getElementById('endHour').value = hour12;
+        document.getElementById('endMinute').value = minuteStr;
+        document.getElementById('endAmPm').value = ampm;
+
+        function showAlert(message, type) {
+            alertBox.textContent = message;
+            alertBox.className = `alert alert-${type}`;
+            alertBox.style.display = 'block';
+            setTimeout(() => { alertBox.style.display = 'none'; }, 5000);
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const machineNo = document.getElementById('machineNo').value.trim();
+            const operationType = document.getElementById('operationType').value;
+            const department = document.getElementById('department').value;
+            const shift = document.getElementById('shift').value;
+            const reason = document.getElementById('reason').value;
+
+            const startDateStr = document.getElementById('startDateInput').value;
+            const startH = parseInt(document.getElementById('startHour').value);
+            const startM = parseInt(document.getElementById('startMinute').value);
+            const startAmPm = document.getElementById('startAmPm').value;
+
+            const endDateStr = document.getElementById('endDateInput').value;
+            const endH = parseInt(document.getElementById('endHour').value);
+            const endM = parseInt(document.getElementById('endMinute').value);
+            const endAmPm = document.getElementById('endAmPm').value;
+
+            function to24h(h, m, ap) {
+                let hour = h;
+                if (ap === 'PM' && hour < 12) hour += 12;
+                if (ap === 'AM' && hour === 12) hour = 0;
+                return { hour, m };
+            }
+
+            const sTime = to24h(startH, startM, startAmPm);
+            const eTime = to24h(endH, endM, endAmPm);
+
+            const startDate = new Date(startDateStr);
+            startDate.setHours(sTime.hour, sTime.m, 0, 0);
+
+            const endDate = new Date(endDateStr);
+            endDate.setHours(eTime.hour, eTime.m, 0, 0);
+
+            if (startDate >= endDate) {
+                showAlert('خطأ: وقت البداية يجب أن يكون قبل وقت النهاية!', 'danger');
+                return;
+            }
+
+            const durationMinutes = Math.round((endDate - startDate) / 60000);
+
+            try {
+                const q = query(collection(db, "breakdowns"), where("machineNo", "==", machineNo));
+                const querySnapshot = await getDocs(q);
+                let overlap = false;
+
+                querySnapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    const existingStart = data.startDate.toDate();
+                    const existingEnd = data.endDate.toDate();
+
+                    if (startDate < existingEnd && endDate > existingStart) {
+                        overlap = true;
+                    }
+                });
+
+                if (overlap) {
+                    showAlert('خطأ: يوجد عطل متداخل مسجل مسبقاً لنفس الماكينة في هذا النطاق الزمني!', 'danger');
+                    return;
+                }
+
+                await addDoc(collection(db, "breakdowns"), {
+                    machineNo,
+                    operationType,
+                    department,
+                    shift,
+                    reason,
+                    startDate: Timestamp.fromDate(startDate),
+                    endDate: Timestamp.fromDate(endDate),
+                    durationMinutes,
+                    createdAt: Timestamp.now()
+                });
+
+                // رسالة تأكيد الحفظ بنجاح للعامل
+                showAlert('تم تأكيد العطل بنجاح، وتم حفظه في النظام!', 'success');
+                form.reset();
+                document.getElementById('startDateInput').value = todayStr;
+                document.getElementById('endDateInput').value = todayStr;
+                document.getElementById('startHour').value = hour12;
+                document.getElementById('startMinute').value = minuteStr;
+                document.getElementById('startAmPm').value = ampm;
+                document.getElementById('endHour').value = hour12;
+                document.getElementById('endMinute').value = minuteStr;
+                document.getElementById('endAmPm').value = ampm;
+            } catch (error) {
+                console.error(error);
+                showAlert('حدث خطأ أثناء التسجيل: ' + error.message, 'danger');
+            }
+        });
+    </script>
+</body>
+</html>
