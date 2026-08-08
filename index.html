@@ -153,6 +153,7 @@
         const form = document.getElementById('breakdownForm');
         const alertBox = document.getElementById('alertBox');
 
+        // إعداد التاريخ والوقت الافتراضي عند تحميل الصفحة
         const now = new Date();
         const todayStr = now.toISOString().split('T')[0];
         document.getElementById('startDateInput').value = todayStr;
@@ -163,7 +164,7 @@
         let ampm = currentHour24 >= 12 ? 'PM' : 'AM';
         let hour12 = currentHour24 % 12 || 12;
         let roundedMinute = Math.round(currentMinute / 5) * 5;
-        if (roundedMinute === 60) { roundedMinute = 0; hour12 = (hour12 % 12) + 1; }
+        if (roundedMinute === 60) { roundedMinute = 0; hour12 = (hour12 % 12) + 1; if(hour12 === 13) hour12 = 1; } // معالجة تعدي الساعة 60
         let minuteStr = roundedMinute < 10 ? '0' + roundedMinute : '' + roundedMinute;
 
         document.getElementById('startHour').value = hour12;
@@ -189,16 +190,19 @@
             const shift = document.getElementById('shift').value;
             const reason = document.getElementById('reason').value;
 
+            // تجميع وقت البداية
             const startDateStr = document.getElementById('startDateInput').value;
             const startH = parseInt(document.getElementById('startHour').value);
             const startM = parseInt(document.getElementById('startMinute').value);
             const startAmPm = document.getElementById('startAmPm').value;
 
+            // تجميع وقت النهاية
             const endDateStr = document.getElementById('endDateInput').value;
             const endH = parseInt(document.getElementById('endHour').value);
             const endM = parseInt(document.getElementById('endMinute').value);
             const endAmPm = document.getElementById('endAmPm').value;
 
+            // دالة مساعدة للتحويل لنظام 24 ساعة
             function to24h(h, m, ap) {
                 let hour = h;
                 if (ap === 'PM' && hour < 12) hour += 12;
@@ -220,9 +224,10 @@
                 return;
             }
 
-            const durationMinutes = Math.round((endDate - startDate) / 60000);
+            const durationMinutes = Math.round((endDate - startDate) / 60000); // حساب المدة بالدقائق
 
             try {
+                // البحث عن أعطال متداخلة لنفس الماكينة
                 const q = query(collection(db, "breakdowns"), where("machineNo", "==", machineNo));
                 const querySnapshot = await getDocs(q);
                 let overlap = false;
@@ -232,6 +237,7 @@
                     const existingStart = data.startDate.toDate();
                     const existingEnd = data.endDate.toDate();
 
+                    // شرط التداخل
                     if (startDate < existingEnd && endDate > existingStart) {
                         overlap = true;
                     }
@@ -242,6 +248,7 @@
                     return;
                 }
 
+                // إضافة العطل الجديد لقاعدة البيانات
                 await addDoc(collection(db, "breakdowns"), {
                     machineNo,
                     operationType,
@@ -254,9 +261,9 @@
                     createdAt: Timestamp.now()
                 });
 
-                // رسالة تأكيد الحفظ بنجاح للعامل
                 showAlert('تم تأكيد العطل بنجاح، وتم حفظه في النظام!', 'success');
                 form.reset();
+                // إعادة تعيين التاريخ والوقت الافتراضي بعد الحفظ
                 document.getElementById('startDateInput').value = todayStr;
                 document.getElementById('endDateInput').value = todayStr;
                 document.getElementById('startHour').value = hour12;
