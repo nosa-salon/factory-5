@@ -3,17 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم الإدارة - الرؤية</title>
+    <title>لوحة تحكم المدير العام</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-nav {
+            background-color: #34495e;
+            padding: 15px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .admin-nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .admin-nav a:hover {
+            color: #3498db;
+        }
+        .welcome-admin {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>لوحة تحكم الإدارة (الرؤية)</h1>
+        <h1>لوحة تحكم المدير العام (Admin)</h1>
         <div class="nav-links">
-            <a href="supervisor.html">متابعة المشرفين</a>
             <a href="#" id="logoutBtn">تسجيل الخروج</a>
         </div>
     </header>
+
+    <div class="admin-nav">
+        <span class="welcome-admin">أهلاً بك، يا مدير</span>
+        <span>|</span>
+        <a href="admin.html">التقارير العامة</a>
+        <a href="supervisor.html">متابعة المشرفين</a>
+        <a href="index.html">تسجيل عطل جديد (عامل)</a>
+    </div>
 
     <div class="container">
         <!-- قسم الفلترة والتحكم بالوقت -->
